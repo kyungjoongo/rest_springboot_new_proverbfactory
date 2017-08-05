@@ -21,8 +21,6 @@ public class TestDao {
      */
     public List<?> getList() {
         String query = "SELECT * FROM blogs";
-
-
         return template.queryForList(query);
     }
 

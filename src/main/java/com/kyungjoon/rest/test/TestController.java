@@ -35,7 +35,7 @@ public class TestController {
     public ModelAndView index() {
         ModelAndView mav=new ModelAndView();
         // mav.addObject("message", "업로드성공!");
-        mav.setViewName("redirect:" + "/workquery/list");
+        mav.setViewName("redirect:" + "/test/list");
         return  mav;
     }
 
@@ -54,15 +54,6 @@ public class TestController {
         return  mav;
 
     }
-
-   /* @RequestMapping("/")
-    public String list(Model model,
-                       @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-
-        System.out.println("kdslgkdlfkgldfkglksdlfkgldfskg");
-
-        return "/test/list";
-    }*/
 
     @SuppressWarnings({"unchecked", "rawtypes"})
     @RequestMapping(value = "/test/getList")

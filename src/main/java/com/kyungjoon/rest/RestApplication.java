@@ -18,13 +18,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class RestApplication extends SpringBootServletInitializer {
 
 
-
     /*임베디드 톰켓사용시*/
-    /*    public static void main(String[] args) {
+    public static void main(String[] args) {
         SpringApplication.run(RestApplication.class, args);
-    }*/
+    }
 
-    public RestApplication() {
+   /* public RestApplication() {
         super();
         setRegisterErrorPageFilter(false); // <- this one
     }
@@ -32,5 +31,5 @@ public class RestApplication extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(RestApplication.class);
-    }
+    }*/
 }
