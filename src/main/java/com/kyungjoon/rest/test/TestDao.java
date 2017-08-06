@@ -21,7 +21,7 @@ public class TestDao {
      */
     public List<?> getList() {
 
-        List arrList  = template.queryForList("SELECT * FROM blogs");
+        List arrList  = template.queryForList("SELECT * FROM proverbs order by id desc");
         return arrList;
     }
 

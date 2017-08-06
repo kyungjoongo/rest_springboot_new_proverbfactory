@@ -65,9 +65,7 @@ public class TestController {
     String getList() throws IOException {
         HashMap resultMap = new HashMap();
 
-
-
-        List arrList  = template.queryForList("SELECT * FROM blogs order by id desc");
+        List<?> arrList = testDao.getList();
         resultMap.put("arrList", arrList);
         System.out.println("고경준 천재님이십니ㅏㄴㅇflsdkflskdflksdlkflsdkflksdlfk");
         return JSONValue.toJSONString(resultMap);
