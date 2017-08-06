@@ -50,9 +50,7 @@
 <body>
 
 <div class="table-responsive">
-    <table class="table table-striped" style="font-size: 20pt;">
-
-
+    <table class="table table-striped" style="font-size: 20pt;font-weight: bold">
 
     <#list arrList as arrOne>
         <tr>

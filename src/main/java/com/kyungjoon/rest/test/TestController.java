@@ -64,10 +64,8 @@ public class TestController {
     public @ResponseBody
     String getList() throws IOException {
         HashMap resultMap = new HashMap();
-
         List<?> arrList = testDao.getList();
         resultMap.put("arrList", arrList);
-        System.out.println("고경준 천재님이십니ㅏㄴㅇflsdkflskdflksdlkflsdkflksdlfk");
         return JSONValue.toJSONString(resultMap);
 
     }
