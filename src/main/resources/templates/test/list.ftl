@@ -50,16 +50,14 @@
 <body>
 
 <div class="table-responsive">
-    <table class="table table-striped" style="font-size: 20pt;font-weight: bold">
+    <table class="table table-striped" style="font-size: 12pt;font-weight: bold">
 
     <#list arrList as arrOne>
         <tr>
             <td>${arrOne.id}</td>
             <td>${arrOne.content}</td>
         </tr>
-
     </#list>
-
 
     </table>
 

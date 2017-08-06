@@ -59,6 +59,8 @@ public class TestController {
 
     }
 
+
+    @CrossOrigin
     @SuppressWarnings({"unchecked", "rawtypes"})
     @RequestMapping(value = "/test/getList")
     public @ResponseBody
