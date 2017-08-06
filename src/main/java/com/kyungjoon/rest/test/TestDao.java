@@ -20,8 +20,9 @@ public class TestDao {
      * @return
      */
     public List<?> getList() {
-        String query = "SELECT * FROM blogs";
-        return template.queryForList(query);
+
+        List arrList  = template.queryForList("SELECT * FROM blogs");
+        return arrList;
     }
 
     /**

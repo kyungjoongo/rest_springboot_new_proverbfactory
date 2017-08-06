@@ -4,6 +4,7 @@ import ch.qos.logback.classic.Logger;
 import org.json.simple.JSONValue;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,9 @@ public class TestController {
 
     @Autowired
     private TestDao testDao;
+
+    @Autowired
+    private JdbcTemplate template;
 
    /* @RequestMapping("/")
     public ModelAndView index() {
@@ -60,11 +64,12 @@ public class TestController {
     public @ResponseBody
     String getList() throws IOException {
         HashMap resultMap = new HashMap();
-        List<?> arrList = testDao.getList();
+
+
+
+        List arrList  = template.queryForList("SELECT * FROM blogs order by id desc");
         resultMap.put("arrList", arrList);
-
         System.out.println("고경준 천재님이십니ㅏㄴㅇflsdkflskdflksdlkflsdkflksdlfk");
-
         return JSONValue.toJSONString(resultMap);
 
     }
