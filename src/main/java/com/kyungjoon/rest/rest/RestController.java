@@ -4,7 +4,6 @@ import ch.qos.logback.classic.Logger;
 import org.json.simple.JSONValue;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,44 +28,38 @@ public class RestController {
     @Autowired
     private RestDao testDao;
 
-
-
-   /* @RequestMapping("/")
-    public ModelAndView index() {
-        ModelAndView mav=new ModelAndView();
-        // mav.addObject("message", "업로드성공!");
-        mav.setViewName("redirect:" + "/test/getList");
-        return  mav;
-    }*/
-
+    @Autowired
+    private RestDao restDao;
+    //Save the uploaded file to this folder
+    private static String UPLOADED_FOLDER = "Z://upload_temp//";
 
     @RequestMapping("/")
     public ModelAndView index() {
-        ModelAndView mav=new ModelAndView();
+        ModelAndView mav = new ModelAndView();
         // mav.addObject("message", "업로드성공!");
         mav.setViewName("redirect:" + "/test/list");
-        return  mav;
+        return mav;
     }
 
 
     @RequestMapping("/rest/writeForm")
     public String writeForm() {
 
-        return  "rest/writeForm";
+        return "rest/writeForm";
     }
 
 
     @RequestMapping("/rest/list")
     public ModelAndView list(Model model,
-                       @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-        ModelAndView mav=new ModelAndView();
+                             @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+        ModelAndView mav = new ModelAndView();
 
 
         List<?> arrList = testDao.getList();
 
         mav.addObject("arrList", arrList);
         mav.setViewName("/rest/list");
-        return  mav;
+        return mav;
 
     }
 
@@ -82,13 +75,6 @@ public class RestController {
         return JSONValue.toJSONString(resultMap);
 
     }
-
-    @Autowired
-    private RestDao restDao;
-
-    //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "Z://upload_temp//";
-
 
     @PostMapping("/rest/upload") // //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
@@ -125,13 +111,13 @@ public class RestController {
 
     @GetMapping("/rest/imageList")
     public ModelAndView uploadStatus() {
-        ModelAndView mav=new ModelAndView();
+        ModelAndView mav = new ModelAndView();
         List arrList = restDao.getImageList();
 
 
         mav.addObject("arrList", arrList);
         mav.setViewName("/rest/imageList");
-        return  mav;
+        return mav;
 
     }
 
@@ -139,7 +125,7 @@ public class RestController {
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-            File serverFile = new File(UPLOADED_FOLDER + imageName );
+        File serverFile = new File(UPLOADED_FOLDER + imageName);
 
         return Files.readAllBytes(serverFile.toPath());
     }
