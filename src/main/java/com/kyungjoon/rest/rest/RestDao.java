@@ -1,15 +1,13 @@
-package com.kyungjoon.rest.test;
+package com.kyungjoon.rest.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Repository
-public class TestDao {
+public class RestDao {
 
     @Autowired
     private JdbcTemplate template;
@@ -35,4 +33,17 @@ public class TestDao {
         String query = "INSERT INTO blogs(content) VALUES( ?)";
         return template.update(query, hello.getName());
     }
+
+
+    public int insertImage(String imageName, String extension) {
+        String query = "INSERT INTO images(image_name, extension) VALUES( ?,?)";
+        return template.update(query, imageName, extension);
+    }
+
+    public List<?> getImageList() {
+
+        List arrList  = template.queryForList("SELECT * FROM images order by id desc");
+        return arrList;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.kyungjoon.rest.test;
+package com.kyungjoon.rest.rest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
