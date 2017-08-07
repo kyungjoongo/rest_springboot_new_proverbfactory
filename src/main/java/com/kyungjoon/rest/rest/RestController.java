@@ -31,7 +31,10 @@ public class RestController {
     @Autowired
     private RestDao restDao;
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "Z://upload_temp//";
+    /*private static String UPLOADED_FOLDER = "Z://upload_temp//";*/
+
+    private static String UPLOADED_FOLDER = "./upload";
+
 
     @RequestMapping("/")
     public ModelAndView index() {
