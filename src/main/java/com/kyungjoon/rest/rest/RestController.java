@@ -30,10 +30,6 @@ public class RestController {
 
     @Autowired
     private RestDao restDao;
-    //Save the uploaded file to this folder
-    /*private static String UPLOADED_FOLDER = "Z://upload_temp//";*/
-
-    private static String UPLOADED_FOLDER = "./upload";
 
 
     @RequestMapping("/")
@@ -92,7 +88,7 @@ public class RestController {
 
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path path = Paths.get(Constants.UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
             String fileName = file.getOriginalFilename();
@@ -128,7 +124,7 @@ public class RestController {
     @ResponseBody
     public byte[] getImage(@PathVariable(value = "imageName") String imageName) throws IOException {
 
-        File serverFile = new File(UPLOADED_FOLDER + imageName);
+        File serverFile = new File(Constants.UPLOADED_FOLDER + imageName);
 
         return Files.readAllBytes(serverFile.toPath());
     }
