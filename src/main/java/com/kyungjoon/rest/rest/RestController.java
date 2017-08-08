@@ -18,6 +18,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 @Controller
@@ -75,6 +77,98 @@ public class RestController {
 
     }
 
+
+    /**
+     * 한개의 이미지와 한개의 명언만 가지고온다
+     * @return
+     * @throws IOException
+     */
+    @CrossOrigin
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    @RequestMapping(value = "/rest/getOneJson")
+    public @ResponseBody
+    String getOne() throws IOException {
+        HashMap resultMap = new HashMap();
+        int totalCount = testDao.getListCount();
+
+        Random r = new Random();
+        int Low = 1;
+        int High = totalCount;
+        int randNumberResult = r.nextInt(High-Low) + Low;
+
+        Map proverbOne = testDao.getProverbOne(randNumberResult);
+
+        System.out.println("proverbOne-->"+ proverbOne.get("content"));
+
+        String strProverbOne =(String) proverbOne.get("content");
+
+        int imageTotalCount = testDao.getImageListCount();
+
+        r = new Random();
+        Low = 1;
+        High = imageTotalCount;
+        randNumberResult = r.nextInt(High-Low) + Low;
+
+        Map imageOneMap = testDao.getImageOne(randNumberResult);
+
+        String imageName  =(String) imageOneMap.get("image_name");
+
+        System.out.println("imagename===>"+ imageName);
+
+
+        /*mav.addObject("imageName", imageName);
+        mav.addObject("strProverbOne", strProverbOne);*/
+
+        resultMap.put("imageName", imageName);
+        resultMap.put("strProverbOne", strProverbOne);
+        return JSONValue.toJSONString(resultMap);
+
+    }
+
+
+    @RequestMapping("/rest/getOne")
+    public ModelAndView getOne(Model model,
+                             @RequestParam(value = "name", required = false, defaultValue = "World") String name) {
+        ModelAndView mav = new ModelAndView();
+
+
+        HashMap resultMap = new HashMap();
+        int totalCount = testDao.getListCount();
+
+        Random r = new Random();
+        int Low = 1;
+        int High = totalCount;
+        int randNumberResult = r.nextInt(High-Low) + Low;
+
+        Map proverbOne = testDao.getProverbOne(randNumberResult);
+
+        System.out.println("proverbOne-->"+ proverbOne.get("content"));
+
+        String strProverbOne =(String) proverbOne.get("content");
+
+        int imageTotalCount = testDao.getImageListCount();
+
+        r = new Random();
+        Low = 1;
+        High = imageTotalCount;
+        randNumberResult = r.nextInt(High-Low) + Low;
+
+        Map imageOneMap = testDao.getImageOne(randNumberResult);
+
+        String imageName  =(String) imageOneMap.get("image_name");
+
+        System.out.println("imagename===>"+ imageName);
+
+
+        mav.addObject("imageName", imageName);
+        mav.addObject("strProverbOne", strProverbOne);
+        mav.setViewName("/rest/proverbOne");
+        return mav;
+
+    }
+
+
+
     @PostMapping("/rest/upload") // //new annotation since 4.3
     public String singleFileUpload(@RequestParam("file") MultipartFile file,
                                    RedirectAttributes redirectAttributes) {
@@ -108,6 +202,11 @@ public class RestController {
         return "redirect:/rest/imageList";
     }
 
+
+    /**
+     * 이미지 리스팅
+     * @return
+     */
     @GetMapping("/rest/imageList")
     public ModelAndView uploadStatus() {
         ModelAndView mav = new ModelAndView();
@@ -119,6 +218,8 @@ public class RestController {
         return mav;
 
     }
+
+
 
     @RequestMapping(value = "/image/{imageName:.+}")
     @ResponseBody

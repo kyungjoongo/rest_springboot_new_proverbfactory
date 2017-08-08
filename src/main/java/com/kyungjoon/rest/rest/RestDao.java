@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class RestDao {
@@ -18,9 +20,32 @@ public class RestDao {
      * @return
      */
     public List<?> getList() {
-
         List arrList  = template.queryForList("SELECT * FROM proverbs order by id desc");
         return arrList;
+    }
+
+    public Map getProverbOne(int randNumber) {
+        return template.queryForMap("SELECT * FROM proverbs where id =?", randNumber);
+    }
+
+
+    public Map getImageOne(int randNumber) {
+        return template.queryForMap("SELECT * FROM images where id =?", randNumber);
+    }
+
+    public Map getOnePicture(int randNumber) {
+        return template.queryForMap("select * from images where id=?", randNumber);
+    }
+
+    public int getImageListCount() {
+        Map resultMap = template.queryForMap("select count(*) as count from images");
+        return (int) resultMap.get("count");
+    }
+
+
+    public int getListCount() {
+        Map resultMap = template.queryForMap("SELECT count(*) as count FROM proverbs order by id desc");
+        return (int) resultMap.get("count");
     }
 
     /**
