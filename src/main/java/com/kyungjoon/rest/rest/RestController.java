@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 @Controller
@@ -88,6 +89,8 @@ public class RestController {
     @RequestMapping(value = "/rest/getOneJson")
     public @ResponseBody
     String getOne() throws IOException {
+
+
         HashMap resultMap = new HashMap();
         int totalCount = testDao.getListCount();
 
@@ -102,22 +105,14 @@ public class RestController {
 
         String strProverbOne =(String) proverbOne.get("content");
 
-        int imageTotalCount = testDao.getImageListCount();
+        List<HashMap> imageList = testDao.getImageList();
 
-        r = new Random();
-        Low = 1;
-        High = imageTotalCount;
-        randNumberResult = r.nextInt(High-Low) + Low;
 
-        Map imageOneMap = testDao.getImageOne(randNumberResult);
+        Map imageOne = imageList.get(ThreadLocalRandom.current().nextInt(imageList.size()));
 
-        String imageName  =(String) imageOneMap.get("image_name");
+        String imageName  =(String) imageOne.get("image_name");
 
         System.out.println("imagename===>"+ imageName);
-
-
-        /*mav.addObject("imageName", imageName);
-        mav.addObject("strProverbOne", strProverbOne);*/
 
         resultMap.put("imageName", imageName);
         resultMap.put("strProverbOne", strProverbOne);
@@ -146,16 +141,12 @@ public class RestController {
 
         String strProverbOne =(String) proverbOne.get("content");
 
-        int imageTotalCount = testDao.getImageListCount();
+        List<HashMap> imageList = testDao.getImageList();
 
-        r = new Random();
-        Low = 1;
-        High = imageTotalCount;
-        randNumberResult = r.nextInt(High-Low) + Low;
 
-        Map imageOneMap = testDao.getImageOne(randNumberResult);
+        Map imageOne = imageList.get(ThreadLocalRandom.current().nextInt(imageList.size()));
 
-        String imageName  =(String) imageOneMap.get("image_name");
+        String imageName  =(String) imageOne.get("image_name");
 
         System.out.println("imagename===>"+ imageName);
 

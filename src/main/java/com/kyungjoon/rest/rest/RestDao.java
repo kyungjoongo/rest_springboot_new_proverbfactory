@@ -37,9 +37,9 @@ public class RestDao {
         return template.queryForMap("select * from images where id=?", randNumber);
     }
 
-    public int getImageListCount() {
-        Map resultMap = template.queryForMap("select count(*) as count from images");
-        return (int) resultMap.get("count");
+    public List getImageList() {
+        List arrList = template.queryForList("select *  from images order by id desc");
+        return arrList;
     }
 
 
@@ -65,10 +65,10 @@ public class RestDao {
         return template.update(query, imageName, extension);
     }
 
-    public List<?> getImageList() {
+    /*public List<?> getImageList() {
 
         List arrList  = template.queryForList("SELECT * FROM images order by id desc");
         return arrList;
-    }
+    }*/
 
 }
