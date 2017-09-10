@@ -80,7 +80,7 @@ public class RestController {
 
 
     /**
-     * 한개의 이미지와 한개의 명언만 가지고온다
+     * 한개의 이미지와 한개의 명언만 가지고 온다 ^__________^
      * @return
      * @throws IOException
      */
@@ -111,6 +111,10 @@ public class RestController {
         String imageName  =(String) imageOne.get("image_name");
 
         System.out.println("imagename===>"+ imageName);
+
+        System.out.println("sdklsdkflksdlfksldkflksdlfk");
+
+
 
         resultMap.put("imageName", imageName);
         resultMap.put("strProverbOne", strProverbOne);
