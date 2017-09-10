@@ -39,7 +39,7 @@ public class RestController {
     public ModelAndView index() {
         ModelAndView mav = new ModelAndView();
         // mav.addObject("message", "업로드성공!");
-        mav.setViewName("redirect:" + "/test/list");
+        mav.setViewName("redirect:" + "/rest/list");
         return mav;
     }
 
@@ -89,8 +89,6 @@ public class RestController {
     @RequestMapping(value = "/rest/getOneJson")
     public @ResponseBody
     String getOne() throws IOException {
-
-
         HashMap resultMap = new HashMap();
         int totalCount = testDao.getListCount();
 
