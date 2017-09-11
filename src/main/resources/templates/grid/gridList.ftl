@@ -80,19 +80,6 @@
 <body>
 
 <div class="table-responsive">
-    <table class="table table-striped" style="font-size: 12pt;font-weight: bold" border="1">
-        <tr>
-            <td> sdlfksdlkflsdkflsk
-                한번만 더 내면 쫐아가서 혼내준다 썅년
-                씨발년 그롯소asdsdfsdfsdfsasdasdasd리좀 그만내 썅년아
-            </td>
-            <Td>
-                sdlfksldkflsk333
-            </Td>
-
-        </tr>
-
-    </table>
     <div class="container">
 
     <#list proverbList as proverbOne>
