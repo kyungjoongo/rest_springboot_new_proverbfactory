@@ -92,9 +92,14 @@
         </#if>
 
         <div class="col-md-4">
-            ${proverbOne.id}
-            ${proverbOne.content}
-                <i class="fa fa-heart" aria-hidden="true"></i>
+
+            <div class="col">${proverbOne.id}${proverbOne.content}</div>
+
+            <div class="col">&nbsp;</div>
+            <#--<div class="w-200"></div>-->
+
+            <div class="col" style="text-align: right"><i class="fa fa-heart" aria-hidden="true"></i></div>
+
         </div>
 
 
