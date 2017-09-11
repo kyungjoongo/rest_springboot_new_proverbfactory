@@ -7,6 +7,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 
 @Configuration
@@ -31,4 +32,6 @@ public class RestApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         return application.sources(RestApplication.class);
     }*/
+
+
 }
