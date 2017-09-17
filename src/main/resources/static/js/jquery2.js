@@ -1244,7 +1244,7 @@
                         }
 
                         // Opera 10-11 does not throw on post-comma invalid pseudos
-                        div.querySelectorAll("*,:x");
+                        div.querySelectorAll("*,:item");
                         rbuggyQSA.push(",.*:");
                     });
                 }
@@ -1262,7 +1262,7 @@
 
                         // This should fail with an exception
                         // Gecko does not error, returns false instead
-                        matches.call( div, "[s!='']:x" );
+                        matches.call( div, "[s!='']:item" );
                         rbuggyMatches.push( "!=", pseudos );
                     });
                 }
@@ -1577,7 +1577,7 @@
 				3 argument (even|odd|\d*|\d*n([+-]\d+)?|...)
 				4 xn-component of xn+y argument ([+-]?\d*n|)
 				5 sign of xn-component
-				6 x of xn-component
+				6 item of xn-component
 				7 sign of y-component
 				8 y of y-component
 			*/
@@ -1589,7 +1589,7 @@
                                 Sizzle.error( match[0] );
                             }
 
-                            // numeric x and y parameters for Expr.filter.CHILD
+                            // numeric item and y parameters for Expr.filter.CHILD
                             // remember that false/true cast respectively to 0/1
                             match[4] = +( match[4] ? match[5] + (match[6] || 1) : 2 * ( match[3] === "even" || match[3] === "odd" ) );
                             match[5] = +( ( match[7] + match[8] ) || match[3] === "odd" );
@@ -3856,7 +3856,7 @@
 
 //	Implementation Summary
 //
-//	1. Enforce API surface and semantic compatibility with 1.9.x branch
+//	1. Enforce API surface and semantic compatibility with 1.9.item branch
 //	2. Improve the module's maintainability by reducing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
@@ -3975,7 +3975,7 @@
                     data = dataUser.get( elem, key ) ||
 
                         // Try to find dashed key if it exists (gh-2779)
-                        // This is for 2.2.x only
+                        // This is for 2.2.item only
                         dataUser.get( elem, key.replace( rmultiDash, "-$&" ).toLowerCase() );
 
                     if ( data !== undefined ) {
@@ -4417,7 +4417,7 @@
 
         // Support: IE<=11+
         // Make sure textarea (and checkbox) defaultValue is properly cloned
-        div.innerHTML = "<textarea>x</textarea>";
+        div.innerHTML = "<textarea>item</textarea>";
         support.noCloneChecked = !!div.cloneNode( true ).lastChild.defaultValue;
     } )();
 
@@ -8275,7 +8275,7 @@
             global: true,
             processData: true,
             async: true,
-            contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+            contentType: "application/item-www-form-urlencoded; charset=UTF-8",
             /*
 		timeout: 0,
 		data: null,
@@ -9198,7 +9198,7 @@
     jQuery.ajaxSetup( {
         accepts: {
             script: "text/javascript, application/javascript, " +
-            "application/ecmascript, application/x-ecmascript"
+            "application/ecmascript, application/item-ecmascript"
         },
         contents: {
             script: /\b(?:java|ecma)script\b/
@@ -9279,7 +9279,7 @@
                     "url" :
                     typeof s.data === "string" &&
                     ( s.contentType || "" )
-                        .indexOf( "application/x-www-form-urlencoded" ) === 0 &&
+                        .indexOf( "application/item-www-form-urlencoded" ) === 0 &&
                     rjsonp.test( s.data ) && "data"
             );
 

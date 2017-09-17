@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
-    <script src="/js/jquery2.js"    ></script>
+    <script src="/js/jquery2.js"></script>
+    <script src="/js/angularjs1.6.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
             integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
@@ -17,9 +18,6 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="/css/font-awesome-4.7.0/css/font-awesome.css">
-
-
-
 
 
     <style>
@@ -84,49 +82,104 @@
 
     </style>
     <script>
-        $(document).ready(function() {
-            $(".fa-heart").on("click", function() {
-                var id =$(this).attr("id");
-               // alert(id);
+        $(document).ready(function () {
+            $(".fa-heart").on("click", function () {
+                var id = $(this).attr("id");
+                // alert(id);
 
-                var _content = $("#content"+ id).html();
+                var _content = $("#content" + id).html();
 
                 alert(_content);
             });
         });
 
+        var helloApp = angular.module("helloApp", []);
+
+        helloApp.controller("HelloCtrl", function ($scope, $http, $compile) {
+            //$scope.name = "고경준 천재님이십니다sdlfksldkflsdkf Hobbes";
+
+            $http({
+                method: "post",
+                url: "/grid/gridListJson"
+            }).then(function mySuccess(response) {
+
+                $scope.arrList = response.data.arrList;
+
+
+            }, function myError(response) {
+                $scope.myWelcome = response.statusText;
+            });
+
+           // $compile('<div>{{caption}}</div>')($scope);
+
+            $scope._row= "<div class='row'>";
+
+            $scope._row2= "</div>";
+
+
+
+
+
+        });
+
 
     </script>
 </head>
-<body>
 
-<div class="table-responsive">
-    <div class="container">
+<body ng-app="helloApp">
+
+
+<div class="container">
+
+    <div ng-controller="HelloCtrl">
+
+            <div class="col-md-4" ng-repeat="x in arrList">
+
+
+                <div ng-if="$index % 3 ==0">
+                    <p ng-bind-html="_row"></p>
+                </div>
+
+
+                <div class="col">{{x.id}} {{x.content}}</div>
+                <div class="col" style="text-align: right"><i class="fa fa-heart" aria-hidden="true"></i>
+
+                    <div ng-if="$index % 3 ==2">
+                        <p ng-bind-html="_row2"></p>
+                    </div>
+
+            </div>
+
+
+        </div>
+
+    <#--
 
     <#list proverbList as proverbOne>
 
-        <!--처음행인경우 start <div> -->
+        <!--처음행인경우 start <div> &ndash;&gt;
         <#if (proverbOne?index % 3) == 0>
-            <div class="row" style="border: 1">
+        <div class="row" style="border: 1">
         </#if>
 
         <div class="col-md-4">
 
             <div class="col" id="content${proverbOne.id}">${proverbOne.id}   ${proverbOne.content}</div>
-            <div class="col" >&nbsp;</div>
-            <div class="col" style="text-align: right"><i class="fa fa-heart" aria-hidden="true" id="${proverbOne.id}"></i></div>
+            <div class="col">&nbsp;</div>
+            <div class="col" style="text-align: right"><i class="fa fa-heart" aria-hidden="true"
+                                                          id="${proverbOne.id}"></i></div>
 
         </div>
 
 
-        <!--마지막행인경우 close <div> -->
+        <!--마지막행인경우 close <div> &ndash;&gt;
         <#if (proverbOne?index % 3) == 2>
-            </div>
+        </div>
         </#if>
 
 
         </tr>
-    </#list>
+    </#list>-->
 
 
     </div>
