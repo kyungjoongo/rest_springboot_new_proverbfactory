@@ -2,8 +2,24 @@ package com.kyungjoon.rest.rest;
 
 public class Constants {
 
-    //public static String UPLOADED_FOLDER = "./../upload/";
+
+    /**
+     * ##########################################################
+     * 리눅스
+     * ##########################################################
+     */
+    public static String UPLOADED_FOLDER = "./../upload/";
+    //public static String LINUX_RECEIPE_IMAGE_UPLOADED_FOLDER = "./../receipe_image/";
 
 
-    public static String UPLOADED_FOLDER = "Z://upload_temp//";
+    /**
+     * ##########################################################
+     * 윈도우즈
+     * ##########################################################
+     */
+    //public static String UPLOADED_FOLDER = "Z://upload_temp//";
+    public static String RECEIPE_IMAGE_UPLOADED_FOLDER = "Z://receipe_image//";
+
+
+
 }
