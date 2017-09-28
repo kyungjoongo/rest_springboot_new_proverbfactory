@@ -88,7 +88,7 @@ public class ReceipeController {
             e.printStackTrace();
         }
 
-        return "redirect:/receipe/write";
+        return "redirect:/receipe/list";
 
 
     }

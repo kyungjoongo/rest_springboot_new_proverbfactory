@@ -8,10 +8,12 @@
           integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/bt4.css">
     <link rel="stylesheet" href="/css/style.css">
-
-
     <script src="/js/jquery2.js"></script>
     <script src="/js/angularjs1.6.js"></script>
+
+
+    <link rel="stylesheet" href="/popup/magnific-popup.css">
+    <script src="/popup/jquery.magnific-popup.js"></script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
@@ -25,26 +27,78 @@
     <script>
         $(document).ready(function () {
 
-            alert('sdlfksdlkflsdkf');
+            $('.image001').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                closeBtnInside: false,
+                fixedContentPos: true,
+                mainClass: 'mfp-no-margins mfp-with-zoom', // class to remove default margin from left and right side
+                image: {
+                    verticalFit: true
+                },
+                zoom: {
+                    enabled: true,
+                    duration: 300 // don't foget to change the duration also in CSS
+                }
+            });
         });
 
     </script>
 </head>
-<body ng-app="helloApp" ng-controller="HelloCtrl">
+<body >
 
 
 <div class="container">
     <div class="header">
-        리시피 입력하기
+        리시피 list<br/>
+
+        <a href="./write.ftl">write</a>
     </div>
     <div class="content">
     <#--[{ID=7, title=sadfsdf, material=sdfsdaf, image=banana.jpg, url=sadffsd, create_dt=2017-09-28}-->
-        <table class="table">
+        <table class="table table-hover">
         <#list arrList as arrOne>
             <tr>
-                <td>${arrOne.title}</td>
-                <td>${arrOne.material}</td>
-                <td><img style="width: 300px;height: 300px;" src="/receipeImage/${arrOne.image}"></td>
+                <table border="1">
+                    <tr>
+                        <th>아이디</th>
+                        <td style="width: 500px">${arrOne.ID}</td>
+                    </tr>
+                    <tr>
+                        <th>title</th>
+                        <td>${arrOne.title}</td>
+                    </tr>
+                    <tr>
+                        <th>material</th>
+                        <td>${arrOne.material}</td>
+                    </tr>
+                    <tr>
+                        <th>url</th>
+                        <td><a href="${arrOne.url}">${arrOne.url}</a></td>
+                    </tr>
+                    <tr>
+                        <th>image</th>
+                        <td>
+
+
+                            <a class="image001" style="width: 50%;height: 50%" href="/receipeImage/${arrOne.image}" title="${arrOne.title}">
+                                <img class="" style="width: 150px;height: 150px;" src="/receipeImage/${arrOne.image}">
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+                <table>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+
+                </table>
+
+
+
             </tr>
         </#list>
         </table>
@@ -52,6 +106,19 @@
     </div>
 
 
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+        <!-- The Close Button -->
+        <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+
+        <!-- Modal Content (The Image) -->
+        <img class="modal-content" id="img01">
+
+        <!-- Modal Caption (Image Text) -->
+        <div id="caption"></div>
+    </div>
 </body>
 
 
