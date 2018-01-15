@@ -32,7 +32,7 @@ public class LhController {
     @Autowired
     private RestDao restDao;
 
-    @GetMapping("/lh/lhList")
+    @RequestMapping("/lh/lhList")
     public ModelAndView gridList(@RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex) {
         ModelAndView mav = new ModelAndView();
         HashMap resultMap = new HashMap();
@@ -44,7 +44,7 @@ public class LhController {
     }
 
     @CrossOrigin
-    @GetMapping("/lh/lhListToJson")
+    @RequestMapping("/lh/lhListToJson")
     public @ResponseBody String lhList(
             @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex
             ,@RequestParam(value = "srchbrtcCode", required = false, defaultValue = "") String srchbrtcCode
@@ -106,6 +106,8 @@ public class LhController {
         JSONObject jsonObj=new JSONObject();
         URI uri = URI.create("https://www.myhome.go.kr/hws/com/cde/selectBrtcSisngn.do?com_searchType=SIGNGU_CODE&com_brtcCode="+srchbrtcCode );
         String responseString = restTemplate.getForObject(uri, String.class);
+
+
 
         try {
             JSONParser parser = new JSONParser();
