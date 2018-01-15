@@ -44,7 +44,7 @@ public class LhController {
     }
 
     @CrossOrigin
-    @PostMapping("/lh/lhListToJson")
+    @GetMapping("/lh/lhListToJson")
     public @ResponseBody String lhList(
             @RequestParam(value = "pageIndex", required = false, defaultValue = "1") String pageIndex
             ,@RequestParam(value = "srchbrtcCode", required = false, defaultValue = "") String srchbrtcCode
@@ -52,6 +52,9 @@ public class LhController {
 
 
     ) {
+
+
+        /*/lh/lhListToJson?pageIndex=1&srchbrtcCode=41&srchsignguCode=135*/
         ModelAndView mav = new ModelAndView();
         HashMap resultMap = new HashMap();
 
@@ -101,7 +104,7 @@ public class LhController {
         org.json.simple.JSONArray jsonArray=new JSONArray();
 
         JSONObject jsonObj=new JSONObject();
-        URI uri = URI.create("https://m.myhome.go.kr/hws/com/cde/selectBrtcSisngn.do?com_searchType=SIGNGU_CODE&com_brtcCode="+srchbrtcCode );
+        URI uri = URI.create("https://www.myhome.go.kr/hws/com/cde/selectBrtcSisngn.do?com_searchType=SIGNGU_CODE&com_brtcCode="+srchbrtcCode );
         String responseString = restTemplate.getForObject(uri, String.class);
 
         try {
